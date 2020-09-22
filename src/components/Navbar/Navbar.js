@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import {MenuItems} from './MenuItems'
 import './Navbar.css'
 import { Button } from '../Button'
-import App from '../../App'
+import Registration from '../auth/Registration'
+import Login from '../auth/Login'
 
 class Navbar extends Component{
     state = { clicked: false}
@@ -14,6 +15,7 @@ class Navbar extends Component{
 
     render(){
         return (
+            <React.Fragment>
             <nav className='NavbarItems'>
                 <h1 className='navbar-logo'>KeyanshTech</h1>
                 <ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'}>
@@ -21,8 +23,12 @@ class Navbar extends Component{
                         return <li key={index}><a className={item.cName} href= {item.url} >{item.title}</a></li>
                     })}
                 </ul>
-                <Button onClick = {this.handleClick}>SignUp</Button>
+                <Button onClick = {this.handleClick}>Login/SignUp</Button>
             </nav>
+            <div>
+                {this.state.clicked ? <Registration/> : <Login/> }
+            </div>
+            </React.Fragment>
         )
     }
 }
